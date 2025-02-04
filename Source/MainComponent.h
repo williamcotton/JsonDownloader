@@ -20,8 +20,7 @@ public:
 
 private:
     //==============================================================================
-    // Your private member variables go here...
-
+    std::unique_ptr<class JsonApiComponent> jsonApiComponent;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };

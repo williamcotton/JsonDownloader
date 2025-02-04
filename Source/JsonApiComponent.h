@@ -42,21 +42,12 @@ public:
         headerString << "Content-Type: application/json\r\n"
                     << "Accept: application/json\r\n";
 
-        // Create JSON object for request body (if needed)
-        juce::var jsonBody;
-        jsonBody.getDynamicObject()->setProperty("key", "value");
-        
-        // Convert JSON to string
-        juce::String jsonString = juce::JSON::toString(jsonBody);
-
-        // First set the POST data on the URL
-        url = url.withPOSTData(jsonString);
-
+        // For this GET request, we don't need to send POST data
         // Create input stream options
-        juce::URL::InputStreamOptions options(juce::URL::ParameterHandling::inPostData);
-        options.withConnectionTimeoutMs(10000)
+        juce::URL::InputStreamOptions options(juce::URL::ParameterHandling::inAddress);
+        auto opt = options.withConnectionTimeoutMs(10000)
                .withExtraHeaders(headerString)
-               .withHttpRequestCmd("POST");
+               .withHttpRequestCmd("GET");  // Changed to GET since we're fetching data
 
         // Create HTTP stream
         std::unique_ptr<juce::InputStream> stream(url.createInputStream(options));
@@ -69,10 +60,26 @@ public:
             // Parse JSON response
             juce::var jsonResponse = juce::JSON::parse(response);
             
-            // Update UI on the message thread
-            juce::MessageManager::callAsync([this, response]()
+            // Format the response nicely
+            juce::String formattedResponse;
+            if (auto* obj = jsonResponse.getDynamicObject())
             {
-                resultText.setText(response);
+                formattedResponse = "Received JSON:\n\n";
+                for (auto& prop : obj->getProperties())
+                {
+                    formattedResponse += prop.name.toString() + ": " + 
+                                       prop.value.toString() + "\n";
+                }
+            }
+            else
+            {
+                formattedResponse = "Invalid JSON response:\n" + response;
+            }
+            
+            // Update UI on the message thread
+            juce::MessageManager::callAsync([this, formattedResponse]()
+            {
+                resultText.setText(formattedResponse);
             });
         }
         else

@@ -4,6 +4,8 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
   <MAINGROUP id="NwnjpL" name="JsonDownloader">
     <GROUP id="{C46CB65F-1E22-C37D-2F7A-7E974A994616}" name="Source">
+      <FILE id="bsdHt5" name="JsonApiComponent.h" compile="0" resource="0"
+            file="Source/JsonApiComponent.h"/>
       <FILE id="USIGnk" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <FILE id="gaMd1v" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
       <FILE id="fKS1pu" name="MainComponent.cpp" compile="1" resource="0"

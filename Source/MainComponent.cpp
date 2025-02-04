@@ -1,9 +1,14 @@
 #include "MainComponent.h"
+#include "JsonApiComponent.h"
 
 //==============================================================================
 MainComponent::MainComponent()
 {
-    setSize (600, 400);
+    // Create and add the JsonApiComponent
+    jsonApiComponent = std::make_unique<JsonApiComponent>();
+    addAndMakeVisible(jsonApiComponent.get());
+
+    setSize(600, 400);
 }
 
 MainComponent::~MainComponent()
@@ -11,19 +16,14 @@ MainComponent::~MainComponent()
 }
 
 //==============================================================================
-void MainComponent::paint (juce::Graphics& g)
+void MainComponent::paint(juce::Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
-
-    g.setFont (juce::FontOptions (16.0f));
-    g.setColour (juce::Colours::white);
-    g.drawText ("Hello World!", getLocalBounds(), juce::Justification::centred, true);
+    g.fillAll(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));
 }
 
 void MainComponent::resized()
 {
-    // This is called when the MainComponent is resized.
-    // If you add any child components, this is where you should
-    // update their positions.
+    // Make the JsonApiComponent fill the entire window
+    jsonApiComponent->setBounds(getLocalBounds());
 }
