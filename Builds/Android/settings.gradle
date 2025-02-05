@@ -1,0 +1,2 @@
+rootProject.name = 'JsonDownloader'
+include ':app'

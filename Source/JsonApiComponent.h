@@ -28,6 +28,16 @@ public:
     void resized() override
     {
         auto area = getLocalBounds();
+        
+        #if JUCE_IOS
+        // Account for iOS safe area at the top
+        if (auto* display = juce::Desktop::getInstance().getDisplays().getPrimaryDisplay())
+        {
+            auto safeInsets = display->safeAreaInsets;
+            area.removeFromTop(safeInsets.getTop());
+        }
+        #endif
+        
         requestButton.setBounds(area.removeFromTop(30));
         resultText.setBounds(area);
     }
