@@ -8,10 +8,15 @@ class JsonApiComponent : public juce::Component,
 public:
     JsonApiComponent() : Thread("HTTPThread")
     {
+        std::cout << "JsonApiComponent()" << std::endl;
         // Add a button to trigger the request
         addAndMakeVisible(requestButton);
         requestButton.setButtonText("Make Request");
-        requestButton.onClick = [this]() { startThread(); };
+        requestButton.onClick = [this]() { 
+            std::cout << "requestButton.onClick" << std::endl;
+            startThread(); 
+        };
+
 
         // Add a text editor to display results
         addAndMakeVisible(resultText);
@@ -89,6 +94,7 @@ public:
             // Update UI on the message thread
             juce::MessageManager::callAsync([this, formattedResponse]()
             {
+                std::cout << "formattedResponse = " << formattedResponse << std::endl;
                 resultText.setText(formattedResponse);
             });
         }
@@ -101,9 +107,11 @@ public:
         }
     }
 
-private:
     juce::TextButton requestButton;
     juce::TextEditor resultText;
+
+
+private:
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(JsonApiComponent)
 };
