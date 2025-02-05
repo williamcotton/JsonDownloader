@@ -1,14 +1,15 @@
 #include <JuceHeader.h>
 #include "../../Source/JsonApiComponent.h"
 
-class MyFirstUnitTest final : public juce::UnitTest
+class JsonDownloaderUnitTest final : public juce::UnitTest
 {
 public:
-    MyFirstUnitTest() : juce::UnitTest ("MyFirstUnitTest") {}
+    JsonDownloaderUnitTest() : juce::UnitTest ("JsonDownloaderUnitTest") {}
+
 
     void runTest() override
     {
-        beginTest ("My first test");
+        beginTest ("End-to-end test");
 
         {
             juce::ScopedJuceInitialiser_GUI juceInit;
@@ -32,7 +33,10 @@ public:
                 // Run the message loop until stopped by the timer
                 messageManager->runDispatchLoop();
                 
-                std::cout << "component.resultText.getText() = " << component.resultText.getText() << std::endl;
+                auto resultText = component.resultText.getText();
+                std::cout << "component.resultText.getText() = " << resultText << std::endl;
+                expect(resultText.contains("Received JSON"));
+                expect(resultText.contains("userId"));
             }
 
             juce::DeletedAtShutdown::deleteAll();
@@ -41,7 +45,8 @@ public:
     }
 };
 
-static MyFirstUnitTest myUnitTest;
+static JsonDownloaderUnitTest jsonDownloaderUnitTest;
+
 
 //==============================================================================
 int main()

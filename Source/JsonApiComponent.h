@@ -8,12 +8,10 @@ class JsonApiComponent : public juce::Component,
 public:
     JsonApiComponent() : Thread("HTTPThread")
     {
-        std::cout << "JsonApiComponent()" << std::endl;
         // Add a button to trigger the request
         addAndMakeVisible(requestButton);
         requestButton.setButtonText("Make Request");
-        requestButton.onClick = [this]() { 
-            std::cout << "requestButton.onClick" << std::endl;
+        requestButton.onClick = [this]() {
             startThread(); 
         };
 
@@ -94,7 +92,6 @@ public:
             // Update UI on the message thread
             juce::MessageManager::callAsync([this, formattedResponse]()
             {
-                std::cout << "formattedResponse = " << formattedResponse << std::endl;
                 resultText.setText(formattedResponse);
             });
         }
