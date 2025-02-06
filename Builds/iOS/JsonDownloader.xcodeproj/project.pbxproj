@@ -56,6 +56,7 @@
 		9FAE295C06E56F3B9C5AA778 /* include_juce_core_CompilationTime.cpp */ /* include_juce_core_CompilationTime.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_core_CompilationTime.cpp; path = ../../JuceLibraryCode/include_juce_core_CompilationTime.cpp; sourceTree = SOURCE_ROOT; };
 		A2EE9EAFD91F1695AFE3CBE2 /* Main.cpp */ /* Main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Main.cpp; path = ../../Source/Main.cpp; sourceTree = SOURCE_ROOT; };
 		A44D8A7CCBFF7D2E942502E5 /* include_juce_graphics.mm */ /* include_juce_graphics.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_graphics.mm; path = ../../JuceLibraryCode/include_juce_graphics.mm; sourceTree = SOURCE_ROOT; };
+		A6CF8F9B0241CAC062FBA99E /* HttpClient.h */ /* HttpClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HttpClient.h; path = ../../Source/HttpClient.h; sourceTree = SOURCE_ROOT; };
 		A8F639F81BFD18BB141EFDEC /* include_juce_gui_basics.mm */ /* include_juce_gui_basics.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_gui_basics.mm; path = ../../JuceLibraryCode/include_juce_gui_basics.mm; sourceTree = SOURCE_ROOT; };
 		A9430E469BC8B7BA8170FB4B /* UIKit.framework */ /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AC22F1558150BB534A0FFBF7 /* juce_core */ /* juce_core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_core; path = "~/JUCE/modules/juce_core"; sourceTree = "<absolute>"; };
@@ -146,6 +147,7 @@
 		C6C72D0CE528D6AAAD002901 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				A6CF8F9B0241CAC062FBA99E,
 				0E93589E0AC9B4EF7D0B1633,
 				A2EE9EAFD91F1695AFE3CBE2,
 				8C8ADFD2D0266740F71542CF,

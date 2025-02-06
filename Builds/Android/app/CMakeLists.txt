@@ -32,6 +32,7 @@ add_library( ${BINARY_NAME}
 
     SHARED
 
+    "../../../Source/HttpClient.h"
     "../../../Source/JsonApiComponent.h"
     "../../../Source/Main.cpp"
     "../../../Source/MainComponent.h"
@@ -1394,6 +1395,7 @@ add_library( ${BINARY_NAME}
 )
 
 set_source_files_properties(
+    "../../../Source/HttpClient.h"
     "../../../Source/JsonApiComponent.h"
     "../../../Source/MainComponent.h"
     "../../../../../../../JUCE/modules/juce_core/containers/juce_AbstractFifo.cpp"

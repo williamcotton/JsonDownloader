@@ -1,12 +1,15 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "HttpClient.h"
 
 class JsonApiComponent : public juce::Component,
                         public juce::Thread
 {
 public:
-    JsonApiComponent() : Thread("HTTPThread")
+    JsonApiComponent(std::unique_ptr<HttpClient> client = std::make_unique<RealHttpClient>())
+        : Thread("HTTPThread")
+        , httpClient(std::move(client))
     {
         // Add a button to trigger the request
         addAndMakeVisible(requestButton);
@@ -47,33 +50,11 @@ public:
 
     void run() override
     {
-        // Create URL object for the API endpoint
-        juce::URL url("https://jsonplaceholder.typicode.com/todos/1");
-
-        // Set up headers if needed
-        juce::String headerString;
-        headerString << "Content-Type: application/json\r\n"
-                    << "Accept: application/json\r\n";
-
-        // For this GET request, we don't need to send POST data
-        // Create input stream options
-        juce::URL::InputStreamOptions options(juce::URL::ParameterHandling::inAddress);
-        auto opt = options.withConnectionTimeoutMs(10000)
-               .withExtraHeaders(headerString)
-               .withHttpRequestCmd("GET");  // Changed to GET since we're fetching data
-
-        // Create HTTP stream
-        std::unique_ptr<juce::InputStream> stream(url.createInputStream(options));
-
-        if (stream != nullptr)
-        {
-            // Read the response
-            juce::String response = stream->readEntireStreamAsString();
+        try {
+            auto response = httpClient->makeGetRequest("https://jsonplaceholder.typicode.com/todos/1");
             
-            // Parse JSON response
-            juce::var jsonResponse = juce::JSON::parse(response);
-            
-            // Format the response nicely
+            auto jsonResponse = juce::JSON::parse(response);
+
             juce::String formattedResponse;
             if (auto* obj = jsonResponse.getDynamicObject())
             {
@@ -89,16 +70,12 @@ public:
                 formattedResponse = "Invalid JSON response:\n" + response;
             }
             
-            // Update UI on the message thread
-            juce::MessageManager::callAsync([this, formattedResponse]()
-            {
+            juce::MessageManager::callAsync([this, formattedResponse = std::move(formattedResponse)]() {
                 resultText.setText(formattedResponse);
             });
         }
-        else
-        {
-            juce::MessageManager::callAsync([this]()
-            {
+        catch (const std::exception& e) {
+            juce::MessageManager::callAsync([this]() {
                 resultText.setText("Failed to connect to the server!");
             });
         }
@@ -109,6 +86,7 @@ public:
 
 
 private:
+    std::unique_ptr<HttpClient> httpClient;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(JsonApiComponent)
 };
