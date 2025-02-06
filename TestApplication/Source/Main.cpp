@@ -26,7 +26,7 @@ public:
                 component.requestButton.triggerClick();
 
                 // Use a timer to stop the message loop after processing messages
-                juce::Timer::callAfterDelay(1000, [messageManager]() {
+                juce::Timer::callAfterDelay(5000, [messageManager]() {
                     messageManager->stopDispatchLoop();
                 });
 

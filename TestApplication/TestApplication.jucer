@@ -23,8 +23,10 @@
   <EXPORTFORMATS>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug"/>
+        <CONFIGURATION isDebug="1" name="Debug" extraLinkerFlags="-fsanitize=address -fsanitize=undefined"
+                       extraCompilerFlags="-fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer"/>
         <CONFIGURATION isDebug="0" name="Release"/>
+        <CONFIGURATION isDebug="1" name="Test" optimisation="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="~/JUCE/modules"/>

@@ -1,0 +1,14 @@
+{
+   JUCE_BidiChain_UninitValue
+   Memcheck:Cond
+   fun:BidiChainIsSingle
+   fun:ResolveWeakTypes
+   fun:IsolatingRunResolve
+   fun:ProcessRun
+   fun:DetermineLevels
+   fun:ResolveParagraph
+   fun:SBParagraphCreate
+   fun:SBAlgorithmCreateParagraph
+   ...
+   obj:*
+}
