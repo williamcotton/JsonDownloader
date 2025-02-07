@@ -4,6 +4,7 @@ FROM ubuntu:latest
 RUN apt-get update && apt-get install -y \
     build-essential \
     git \
+    ccache \
     libasound2-dev \
     libjack-jackd2-dev \
     ladspa-sdk \
@@ -22,6 +23,11 @@ RUN apt-get update && apt-get install -y \
     mesa-common-dev \
     && rm -rf /var/lib/apt/lists/*
 
+# Configure ccache
+ENV CCACHE_DIR=/ccache
+ENV PATH="/usr/lib/ccache:$PATH"
+VOLUME /ccache
+
 # Clone JUCE
 RUN git clone --depth 1 --branch 8.0.6 https://github.com/juce-framework/JUCE.git ~/JUCE
 
@@ -32,4 +38,4 @@ WORKDIR /app
 COPY . .
 
 # Build the test application
-CMD cd TestApplication/Builds/LinuxMakefile && make clean && make CONFIG=Debug && ./build/TestApplication
+CMD cd TestApplication/Builds/LinuxMakefile && make CONFIG=Debug && ./build/TestApplication
