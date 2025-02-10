@@ -3,7 +3,13 @@
 <JUCERPROJECT id="mV9ZVi" name="TestApplication" projectType="consoleapp" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
   <MAINGROUP id="EpKmj1" name="TestApplication">
+    <GROUP id="{7E40E781-46BB-7A9F-E19A-C90B27535AEE}" name="BinaryData">
+      <FILE id="pFVNUT" name="BinaryData.cpp" compile="1" resource="0" file="../JuceLibraryCode/BinaryData.cpp"/>
+      <FILE id="hIJ3XB" name="BinaryData.h" compile="0" resource="0" file="../JuceLibraryCode/BinaryData.h"/>
+    </GROUP>
     <GROUP id="{D709C857-FDEF-F346-D99B-A06626C43598}" name="Source">
+      <FILE id="QYOE5Y" name="SliderComponent.h" compile="0" resource="0"
+            file="../Source/SliderComponent.h"/>
       <FILE id="GL14JF" name="JsonApiComponent.h" compile="0" resource="0"
             file="../Source/JsonApiComponent.h"/>
       <FILE id="vdX56W" name="MainComponent.cpp" compile="1" resource="0"
