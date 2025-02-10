@@ -2,6 +2,7 @@
 
 #include <JuceHeader.h>
 #include "HttpClient.h"
+#include "SliderComponent.h"
 
 class JsonApiComponent : public juce::Component,
                         public juce::Thread
@@ -18,12 +19,14 @@ public:
             startThread(); 
         };
 
-
         // Add a text editor to display results
         addAndMakeVisible(resultText);
         resultText.setMultiLine(true);
         resultText.setReadOnly(true);
         resultText.setCaretVisible(false);
+
+        // Add the slider component
+        addAndMakeVisible(sliderComponent);
     }
 
     ~JsonApiComponent() override
@@ -41,12 +44,21 @@ public:
         {
             auto safeInsets = display->safeAreaInsets;
             area.removeFromTop(safeInsets.getTop());
+            area.removeFromBottom(safeInsets.getBottom());
         }
         #endif
-        
+
+        // Reserve space for the request button at the top
         requestButton.setBounds(area.removeFromTop(30));
+
+        // Reserve space for the slider at the bottom (adjust height as needed)
+        auto sliderHeight = 50;
+        sliderComponent.setBounds(area.removeFromBottom(sliderHeight));
+
+        // Use the remaining area for the result text
         resultText.setBounds(area);
     }
+
 
     void run() override
     {
@@ -83,6 +95,7 @@ public:
 
     juce::TextButton requestButton;
     juce::TextEditor resultText;
+    SliderComponent sliderComponent;
 
 
 private:

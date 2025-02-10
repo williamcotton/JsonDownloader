@@ -32,6 +32,8 @@ add_library( ${BINARY_NAME}
 
     SHARED
 
+    "../../../Source/sliderKnob.png"
+    "../../../Source/SliderComponent.h"
     "../../../Source/HttpClient.h"
     "../../../Source/JsonApiComponent.h"
     "../../../Source/Main.cpp"
@@ -1383,6 +1385,8 @@ add_library( ${BINARY_NAME}
     "../../../../../../../JUCE/modules/juce_gui_basics/juce_gui_basics.cpp"
     "../../../../../../../JUCE/modules/juce_gui_basics/juce_gui_basics.mm"
     "../../../../../../../JUCE/modules/juce_gui_basics/juce_gui_basics.h"
+    "../../../JuceLibraryCode/BinaryData.cpp"
+    "../../../JuceLibraryCode/BinaryData.h"
     "../../../JuceLibraryCode/include_juce_core.cpp"
     "../../../JuceLibraryCode/include_juce_core_CompilationTime.cpp"
     "../../../JuceLibraryCode/include_juce_data_structures.cpp"
@@ -1395,6 +1399,8 @@ add_library( ${BINARY_NAME}
 )
 
 set_source_files_properties(
+    "../../../Source/sliderKnob.png"
+    "../../../Source/SliderComponent.h"
     "../../../Source/HttpClient.h"
     "../../../Source/JsonApiComponent.h"
     "../../../Source/MainComponent.h"
@@ -2744,6 +2750,7 @@ set_source_files_properties(
     "../../../../../../../JUCE/modules/juce_gui_basics/juce_gui_basics.cpp"
     "../../../../../../../JUCE/modules/juce_gui_basics/juce_gui_basics.mm"
     "../../../../../../../JUCE/modules/juce_gui_basics/juce_gui_basics.h"
+    "../../../JuceLibraryCode/BinaryData.h"
     "../../../JuceLibraryCode/JuceHeader.h"
     PROPERTIES HEADER_FILE_ONLY TRUE)
 

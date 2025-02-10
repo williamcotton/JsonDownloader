@@ -3,7 +3,12 @@
 <JUCERPROJECT id="zt3jfn" name="JsonDownloader" projectType="guiapp" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
   <MAINGROUP id="NwnjpL" name="JsonDownloader">
+    <GROUP id="{7E40E781-46BB-7A9F-E19A-C90B27535AEE}" name="Images">
+      <FILE id="mxccIk" name="sliderKnob.png" compile="0" resource="1" file="Source/sliderKnob.png"/>
+    </GROUP>
     <GROUP id="{C46CB65F-1E22-C37D-2F7A-7E974A994616}" name="Source">
+      <FILE id="CQdbKc" name="SliderComponent.h" compile="0" resource="0"
+            file="Source/SliderComponent.h"/>
       <FILE id="tGJAW9" name="HttpClient.h" compile="0" resource="0" file="Source/HttpClient.h"/>
       <FILE id="bsdHt5" name="JsonApiComponent.h" compile="0" resource="0"
             file="Source/JsonApiComponent.h"/>
