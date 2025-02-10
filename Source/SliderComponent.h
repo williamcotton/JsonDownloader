@@ -76,7 +76,7 @@ public:
 
     slider.onValueChange = [this]() {
       if (onSlide) {
-        onSlide(slider.getValue());
+        onSlide((int)slider.getValue());
       }
     };
   } 
@@ -85,11 +85,16 @@ public:
     slider.setBounds(getLocalBounds());
   }
 
-  CustomSliderLookAndFeel customLookAndFeel;
+  void setSliderValue(int value) {
+    slider.setValue(value);
+  }
+
+  std::function<void(int)> onSlide;
   Slider slider;
-  std::function<void(float)> onSlide;
 
 private:
+  CustomSliderLookAndFeel customLookAndFeel;
+  
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SliderComponent)
 };

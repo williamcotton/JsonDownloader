@@ -5,6 +5,8 @@
 #include "HttpClient.h"
 #include "SliderComponent.h"
 
+typedef int TodoItemId;
+
 class JsonApiComponent : public juce::Component,
                         public juce::Thread
 {
@@ -39,7 +41,9 @@ public:
 
         sliderComponent.onSlide = [this](float value) {
             std::cout << "Slider value changed to: " << value << std::endl;
+            todoItemId = (int)value;
         };
+
     }
 
     ~JsonApiComponent() override
@@ -77,8 +81,7 @@ public:
     void run() override
     {
         try {
-            sliderValue = (int)sliderComponent.slider.getValue();
-            std::string url = "https://jsonplaceholder.typicode.com/todos/" + std::to_string(sliderValue);
+            std::string url = "https://jsonplaceholder.typicode.com/todos/" + std::to_string(todoItemId);
             auto response = httpClient->makeGetRequest(url);
             
 
@@ -113,10 +116,9 @@ public:
     juce::TextButton requestButton;
     juce::TextEditor resultText;
     SliderComponent sliderComponent;
-    int sliderValue = 1;
+    TodoItemId todoItemId = 1;
 
-
-private:
+  private:
     std::unique_ptr<HttpClient> httpClient;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(JsonApiComponent)
