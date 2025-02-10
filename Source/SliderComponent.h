@@ -69,6 +69,16 @@ public:
         BinaryData::sliderKnob_png, BinaryData::sliderKnob_pngSize));
     
     slider.setLookAndFeel(&customLookAndFeel);
+    slider.setRange(1, 10, 1);
+    slider.setNumDecimalPlacesToDisplay(0);
+    
+    onSlide = nullptr;
+
+    slider.onValueChange = [this]() {
+      if (onSlide) {
+        onSlide(slider.getValue());
+      }
+    };
   } 
 
   void resized() override {
@@ -76,9 +86,8 @@ public:
   }
 
   CustomSliderLookAndFeel customLookAndFeel;
-
-
   Slider slider;
+  std::function<void(float)> onSlide;
 
 private:
 

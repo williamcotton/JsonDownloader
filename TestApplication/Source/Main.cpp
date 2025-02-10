@@ -20,7 +20,7 @@ public:
 
     void runTest() override
     {
-        beginTest ("End-to-end test");
+        beginTest ("JSON Request Test");
 
         {
             juce::ScopedJuceInitialiser_GUI juceInit;

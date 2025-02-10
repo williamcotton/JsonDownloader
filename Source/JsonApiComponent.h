@@ -27,9 +27,14 @@ public:
 
         // Add the slider component
         addAndMakeVisible(sliderComponent);
+
+        sliderComponent.onSlide = [this](float value) {
+            std::cout << "Slider value changed to: " << value << std::endl;
+        };
     }
 
     ~JsonApiComponent() override
+
     {
         stopThread(4000);
     }
@@ -63,8 +68,11 @@ public:
     void run() override
     {
         try {
-            auto response = httpClient->makeGetRequest("https://jsonplaceholder.typicode.com/todos/1");
+            sliderValue = (int)sliderComponent.slider.getValue();
+            std::string url = "https://jsonplaceholder.typicode.com/todos/" + std::to_string(sliderValue);
+            auto response = httpClient->makeGetRequest(url);
             
+
             auto jsonResponse = juce::JSON::parse(response);
 
             juce::String formattedResponse;
@@ -96,6 +104,7 @@ public:
     juce::TextButton requestButton;
     juce::TextEditor resultText;
     SliderComponent sliderComponent;
+    int sliderValue = 1;
 
 
 private:
