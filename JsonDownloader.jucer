@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="zt3jfn" name="JsonDownloader" projectType="guiapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" cppLanguageStandard="20">
   <MAINGROUP id="NwnjpL" name="JsonDownloader">
     <GROUP id="{7E40E781-46BB-7A9F-E19A-C90B27535AEE}" name="Images">
       <FILE id="mxccIk" name="sliderKnob.png" compile="0" resource="1" file="Source/sliderKnob.png"/>

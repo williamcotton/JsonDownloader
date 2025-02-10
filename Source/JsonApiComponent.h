@@ -1,6 +1,7 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include <ranges>
 #include "HttpClient.h"
 #include "SliderComponent.h"
 
@@ -16,7 +17,15 @@ public:
         addAndMakeVisible(requestButton);
         requestButton.setButtonText("Make Request");
         requestButton.onClick = [this]() {
-            startThread(); 
+            startThread();
+
+            // Look ma, no loops!
+            std::vector<int> numbers = {1, 2, 3, 4, 5};
+            auto evens = numbers
+                | std::views::filter([](int n) { return n % 2 == 0; })
+                | std::views::transform([](int n) { return n * 2; });
+
+            std::ranges::for_each(evens, [](int n) { std::cout << n << " "; });
         };
 
         // Add a text editor to display results

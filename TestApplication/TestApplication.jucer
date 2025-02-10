@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="mV9ZVi" name="TestApplication" projectType="consoleapp" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" cppLanguageStandard="20">
   <MAINGROUP id="EpKmj1" name="TestApplication">
     <GROUP id="{7E40E781-46BB-7A9F-E19A-C90B27535AEE}" name="BinaryData">
       <FILE id="pFVNUT" name="BinaryData.cpp" compile="1" resource="0" file="../JuceLibraryCode/BinaryData.cpp"/>
